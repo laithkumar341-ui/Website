@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRI MONIKA POWER TOOLS // TIRUPPUR_NET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #00f3ff;
+            --neon-pink: #ff00ff;
+            --neon-yellow: #ffff00;
+            --neon-green: #00ff41;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050508;
+            --panel-bg: rgba(10, 10, 15, 0.9);
+            --grid-color: rgba(0, 243, 255, 0.1);
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --glitch-red: #ff0000;
+            --glitch-blue: #0000ff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        /* Scanline Effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 9999;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Glitch Text Effect */
+        .glitch {
+            position: relative;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 2s infinite linear alternate-reverse;
+            color: var(--glitch-red);
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 3s infinite linear alternate-reverse;
+            color: var(--glitch-blue);
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+            20% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(40% 0 40% 0); transform: translate(2px, -2px); }
+            60% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 0); }
+            80% { clip-path: inset(80% 0 0 0); transform: translate(2px, 2px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+            20% { clip-path: inset(60% 0 20% 0); transform: translate(2px, -2px); }
+            40% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 2px); }
+            60% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
+            80% { clip-path: inset(0 0 80% 0); transform: translate(-2px, -2px); }
+        }
+
+        /* Navigation - Cyberpunk Style */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 8, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: logoPulse 2s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(0, 243, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.4); }
+        }
+
+        .logo-icon i {
+            color: var(--dark-bg);
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            color: var(--neon-pink);
+            letter-spacing: 4px;
+            margin-top: -5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding: 10px 0;
+            transition: all 0.3s;
+        }
+
+        .nav-links a::before {
+            content: '[';
+            position: absolute;
+            left: -15px;
+            opacity: 0;
+            color: var(--neon-cyan);
+            transition: all 0.3s;
+        }
+
+        .nav-links a::after {
+            content: ']';
+            position: absolute;
+            right: -15px;
+            opacity: 0;
+            color: var(--neon-cyan);
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a:hover::after {
+            opacity: 1;
+        }
+
+        .mobile-menu {
+            display: none;
+            color: var(--neon-cyan);
+            font-size: 24px;
+            cursor: pointer;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        /* Hero Section - Cyberpunk */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 70px;
+            background: radial-gradient(ellipse at center, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(0, 243, 255, 0.03) 50%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(255, 0, 255, 0.03) 50%, transparent 52%);
+            background-size: 100px 100px;
+            animation: heroBgMove 10s linear infinite;
+        }
+
+        @keyframes heroBgMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-content h1 .line-1 {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            display: block;
+        }
+
+        .hero-content h1 .line-2 {
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            display: block;
+            font-size: 48px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            border-left: 3px solid var(--neon-cyan);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .hero-subtitle::before {
+            content: '>';
+            position: absolute;
+            left: 5px;
+            color: var(--neon-cyan);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .cyber-btn {
+            padding: 15px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+
+        .cyber-btn-primary {
+            color: var(--neon-cyan);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3), inset 0 0 20px rgba(0, 243, 255, 0.1);
+        }
+
+        .cyber-btn-primary:hover {
+            background: rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.6), inset 0 0 30px rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .cyber-btn-secondary {
+            color: var(--neon-pink);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3), inset 0 0 20px rgba(255, 0, 255, 0.1);
+        }
+
+        .cyber-btn-secondary:hover {
+            background: rgba(255, 0, 255, 0.1);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.6), inset 0 0 30px rgba(255, 0, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hologram-frame {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 
+                0 0 30px rgba(0, 243, 255, 0.3),
+                inset 0 0 30px rgba(0, 243, 255, 0.1);
+            clip-path: polygon(10% 0, 100% 0, 100% 85%, 90% 100%, 0 100%, 0 15%);
+            background: rgba(0, 243, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .hologram-frame::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-cyan), transparent, var(--neon-pink));
+            z-index: -1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .hologram-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hologram-content img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.5));
+            animation: hologramFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes hologramFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hologram-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 243, 255, 0.03) 2px,
+                rgba(0, 243, 255, 0.03) 4px
+            );
+            pointer-events: none;
+        }
+
+        .corner-deco {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--neon-cyan);
+        }
+
+        .corner-tl { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+        .corner-tr { top: -2px; right: -2px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; }
+        .corner-br { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            padding: 100px 0 60px;
+            position: relative;
+        }
+
+        .section-tag {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            color: var(--neon-pink);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-tag::before,
+        .section-tag::after {
+            content: '//';
+            margin: 0 15px;
+            color: var(--neon-cyan);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title .highlight {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products - Cyberpunk Cards */
+        .products-section {
+            padding-bottom: 100px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .cyber-card {
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+        }
+
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .cyber-card:hover::before {
+            left: 100%;
+        }
+
+        .cyber-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 15px 20px;
+            background: rgba(0, 243, 255, 0.05);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-id {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            color: var(--neon-cyan);
+            letter-spacing: 2px;
+        }
+
+        .card-status {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 5px 10px;
+            background: rgba(0, 255, 65, 0.1);
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%, 0 30%);
+        }
+
+        .card-image {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .card-image img {
+            max-width: 70%;
+            max-height: 70%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.3));
+            transition: transform 0.3s;
+        }
+
+        .cyber-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .card-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .spec-tag {
+            font-size: 11px;
+            padding: 5px 12px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 30%);
+        }
+
+        .card-brands {
+            display: flex;
+            gap: 10px;
+        }
+
+        .brand-chip {
+            font-size: 10px;
+            padding: 5px 10px;
+            background: rgba(255, 0, 255, 0.1);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            color: var(--neon-pink);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 243, 255, 0.05) 50%, transparent 100%);
+            padding-bottom: 100px;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .cyber-frame {
+            position: relative;
+            padding: 20px;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            clip-path: polygon(0 10%, 10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+        }
+
+        .cyber-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: contrast(1.1) brightness(0.9);
+        }
+
+        .frame-deco {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--neon-pink);
+        }
+
+        .deco-tl { top: -10px; left: -10px; border-right: none; border-bottom: none; }
+        .deco-br { bottom: -10px; right: -10px; border-left: none; border-top: none; }
+
+        .data-block {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background: var(--dark-bg);
+            border: 1px solid var(--neon-cyan);
+            padding: 20px 30px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+        }
+
+        .data-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            line-height: 1;
+        }
+
+        .data-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        .about-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .about-content h2 span {
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .about-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .about-text::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--neon-cyan);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-cell {
+            padding: 20px;
+            background: rgba(0, 243, 255, 0.05);
+            border-left: 3px solid var(--neon-cyan);
+            transition: all 0.3s;
+        }
+
+        .stat-cell:hover {
+            background: rgba(0, 243, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .cell-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+        }
+
+        .cell-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding-bottom: 100px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .service-node {
+            background: var(--panel-bg);
+            border: 1px solid rgba(255, 0, 255, 0.2);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+        }
+
+        .service-node::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon-pink), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+
+        .service-node:hover::before {
+            transform: translateX(100%);
+        }
+
+        .service-node:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .node-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: rgba(255, 0, 255, 0.1);
+            border: 2px solid var(--neon-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation: nodePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes nodePulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 0, 255, 0.6); }
+        }
+
+        .node-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .node-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .node-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .node-tag {
+            font-size: 10px;
+            padding: 4px 10px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Brands - Neon Signs */
+        .brands-section {
+            padding: 80px 0;
+            background: radial-gradient(ellipse at center, rgba(255, 0, 255, 0.05) 0%, transparent 70%);
+        }
+
+        .brands-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .neon-sign {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            transition: all 0.3s;
+            opacity: 0.5;
+        }
+
+        .neon-sign:hover {
+            color: var(--neon-cyan);
+            text-shadow: 
+                0 0 10px rgba(0, 243, 255, 0.8),
+                0 0 20px rgba(0, 243, 255, 0.6),
+                0 0 30px rgba(0, 243, 255, 0.4);
+            opacity: 1;
+            animation: flicker 1.5s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+            52% { opacity: 0.3; }
+            54% { opacity: 1; }
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding-bottom: 100px;
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-terminal {
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            padding: 40px;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            animation: terminalPulse 2s infinite;
+        }
+
+        @keyframes terminalPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .terminal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            color: var(--neon-cyan);
+            letter-spacing: 2px;
+        }
+
+        .contact-item-cyber {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(0, 243, 255, 0.05);
+            border-left: 3px solid var(--neon-cyan);
+            transition: all 0.3s;
+        }
+
+        .contact-item-cyber:hover {
+            background: rgba(0, 243, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .contact-icon-cyber {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-cyan);
+            font-size: 20px;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+        }
+
+        .contact-text-cyber h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            color: var(--neon-cyan);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .contact-text-cyber p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .map-cyber {
+            margin-top: 30px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-cyber a {
+            display: block;
+            text-decoration: none;
+        }
+
+        .map-display {
+            height: 200px;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(0, 243, 255, 0.1) 50%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(255, 0, 255, 0.1) 50%, transparent 52%);
+            background-size: 60px 60px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-target {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            position: relative;
+            animation: targetPulse 2s infinite;
+        }
+
+        .map-target::before,
+        .map-target::after {
+            content: '';
+            position: absolute;
+            border: 1px solid var(--neon-cyan);
+            border-radius: 50%;
+        }
+
+        .map-target::before {
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            animation: targetPulse 2s infinite 0.5s;
+        }
+
+        .map-target::after {
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            animation: targetPulse 2s infinite 1s;
+        }
+
+        .map-target i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--neon-pink);
+            font-size: 24px;
+        }
+
+        @keyframes targetPulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .map-info {
+            padding: 15px 20px;
+            background: rgba(0, 243, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .map-coords {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            color: var(--neon-cyan);
+        }
+
+        .map-action {
+            font-size: 12px;
+            color: var(--neon-pink);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Contact Form */
+        .form-cyber {
+            background: var(--panel-bg);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            padding: 40px;
+            clip-path: polygon(5% 0, 100% 0, 100% 95%, 95% 100%, 0 100%, 0 5%);
+        }
+
+        .form-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            color: var(--neon-pink);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            color: var(--neon-cyan);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+        }
+
+        .input-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-cyber {
+            width: 100%;
+            padding: 18px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: transparent;
+            color: var(--neon-pink);
+            border: 2px solid var(--neon-pink);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+
+        .submit-cyber:hover {
+            background: rgba(255, 0, 255, 0.1);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            border-top: 2px solid var(--neon-cyan);
+            padding: 60px 0 30px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-pink), var(--neon-cyan), transparent);
+            animation: borderFlow 3s linear infinite;
+        }
+
+        @keyframes borderFlow {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand .logo-text {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .social-cyber {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-node {
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-cyan);
+            font-size: 18px;
+            transition: all 0.3s;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .social-node:hover {
+            background: var(--neon-cyan);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .footer-links h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            color: var(--neon-pink);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a::before {
+            content: '>';
+            color: var(--neon-cyan);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-cyan);
+            padding-left: 10px;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+
+        .footer-contact h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            color: var(--neon-pink);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .contact-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .contact-line i {
+            color: var(--neon-cyan);
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 30px 0;
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .system-status {
+            font-size: 12px;
+            color: var(--neon-green);
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            animation: statusBlink 1s infinite;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-container,
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content h1 .line-2 {
+                font-size: 32px;
+            }
+
+            .products-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-visual {
+                height: 350px;
+            }
+
+            .data-block {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content h1 .line-2 {
+                font-size: 24px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+
+            .brands-grid {
+                gap: 30px;
+            }
+
+            .neon-sign {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div>
+                    <div class="logo-text">SRI MONIKA</div>
+                    <div class="logo-sub">POWER TOOLS</div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="glitch" data-text="POWER TOOLS FOR PROFESSIONALS">
+                    <span class="line-1">POWER TOOLS</span>
+                    <span class="line-2">FOR PROFESSIONALS</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Your trusted source for premium electric and construction power tools in Tiruppur. Quality tools from Bosch, Makita, Dewalt & more.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#products" class="cyber-btn cyber-btn-primary">
+                        <i class="fas fa-microchip"></i>
+                        Explore Products
+                    </a>
+                    <a href="#contact" class="cyber-btn cyber-btn-secondary">
+                        <i class="fas fa-satellite-dish"></i>
+                        Contact Us
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Years Active</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Clients</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Products</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hologram-frame">
+                    <div class="corner-deco corner-tl"></div>
+                    <div class="corner-deco corner-tr"></div>
+                    <div class="corner-deco corner-bl"></div>
+                    <div class="corner-deco corner-br"></div>
+                    <div class="hologram-content">
+                        <div class="hologram-lines"></div>
+                        <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/drill-machine.jpg" alt="Power Drill">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="section-header">
+            <span class="section-tag">Product Database</span>
+            <h2 class="section-title">
+                Premium <span class="highlight">Power Tools</span>
+            </h2>
+            <p class="section-subtitle">
+                Access our comprehensive range of electric and construction power tools from world-renowned manufacturers.
+            </p>
+        </div>
+        
+        <div class="products-grid">
+            <div class="cyber-card reveal">
+                <div class="card-header">
+                    <span class="card-id">MDL-DR-001</span>
+                    <span class="card-status">In Stock</span>
+                </div>
+                <div class="card-image">
+                    <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/drill-machine.jpg" alt="Drill Machine">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Drill Machines</h3>
+                    <p class="card-desc">Corded and cordless drill machines for all your drilling needs. Powerful motors with variable speed control.</p>
+                    <div class="card-specs">
+                        <span class="spec-tag">Cordless</span>
+                        <span class="spec-tag">Variable Speed</span>
+                        <span class="spec-tag">Hammer Function</span>
+                    </div>
+                    <div class="card-brands">
+                        <span class="brand-chip">Bosch</span>
+                        <span class="brand-chip">Makita</span>
+                        <span class="brand-chip">Dewalt</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cyber-card reveal">
+                <div class="card-header">
+                    <span class="card-id">MDL-AG-002</span>
+                    <span class="card-status">In Stock</span>
+                </div>
+                <div class="card-image">
+                    <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/angle-grinder.jpg" alt="Angle Grinder">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Angle Grinders</h3>
+                    <p class="card-desc">Heavy-duty angle grinders for cutting, grinding, and polishing applications.</p>
+                    <div class="card-specs">
+                        <span class="spec-tag">4" to 9" Sizes</span>
+                        <span class="spec-tag">Safety Guard</span>
+                        <span class="spec-tag">Ergonomic Handle</span>
+                    </div>
+                    <div class="card-brands">
+                        <span class="brand-chip">Bosch</span>
+                        <span class="brand-chip">Makita</span>
+                        <span class="brand-chip">Hitachi</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cyber-card reveal">
+                <div class="card-header">
+                    <span class="card-id">MDL-MC-003</span>
+                    <span class="card-status">In Stock</span>
+                </div>
+                <div class="card-image">
+                    <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/marble-cutter.jpg" alt="Marble Cutter">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Marble Cutters</h3>
+                    <p class="card-desc">Precision cutting tools for marble, granite, and tile work. Clean cuts every time.</p>
+                    <div class="card-specs">
+                        <span class="spec-tag">Wet/Dry Cutting</span>
+                        <span class="spec-tag">Adjustable Depth</span>
+                        <span class="spec-tag">Dust Extraction</span>
+                    </div>
+                    <div class="card-brands">
+                        <span class="brand-chip">Bosch</span>
+                        <span class="brand-chip">Makita</span>
+                        <span class="brand-chip">Dongcheng</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cyber-card reveal">
+                <div class="card-header">
+                    <span class="card-id">MDL-TE-004</span>
+                    <span class="card-status">In Stock</span>
+                </div>
+                <div class="card-image">
+                    <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/tile-epoxy.jpg" alt="Tile Paste & Epoxy">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Tile Paste & Epoxy</h3>
+                    <p class="card-desc">Adhesives, epoxy, and finishing materials for professional tile installation.</p>
+                    <div class="card-specs">
+                        <span class="spec-tag">Tile Adhesives</span>
+                        <span class="spec-tag">Epoxy Grout</span>
+                        <span class="spec-tag">Waterproofing</span>
+                    </div>
+                    <div class="card-brands">
+                        <span class="brand-chip">Roff</span>
+                        <span class="brand-chip">MYK</span>
+                        <span class="brand-chip">Ardex</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="section-header">
+            <span class="section-tag">System Info</span>
+            <h2 class="section-title">
+                About <span class="highlight">Us</span>
+            </h2>
+        </div>
+
+        <div class="about-container">
+            <div class="about-visual reveal">
+                <div class="cyber-frame">
+                    <div class="frame-deco deco-tl"></div>
+                    <div class="frame-deco deco-br"></div>
+                    <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/logo.jpg" alt="Sri Monika Power Tools">
+                </div>
+                <div class="data-block">
+                    <div class="data-number">25+</div>
+                    <div class="data-label">Years of Excellence</div>
+                </div>
+            </div>
+            
+            <div class="about-content reveal">
+                <h2>Your Trusted Partner for <span>Power Tools</span></h2>
+                <p class="about-text">
+                    Established in 2000, Sri Monika Power Tools has grown to become one of the most trusted names in power tool distribution in Tiruppur and surrounding regions.
+                </p>
+                <p class="about-text">
+                    Our commitment to quality, competitive pricing, and exceptional customer service has earned us a loyal customer base of over 5,000 satisfied clients.
+                </p>
+
+                <div class="stats-row">
+                    <div class="stat-cell">
+                        <div class="cell-number">25+</div>
+                        <div class="cell-label">Years Experience</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="cell-number">5000+</div>
+                        <div class="cell-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="cell-number">50+</div>
+                        <div class="cell-label">Product Categories</div>
+                    </div>
+                    <div class="stat-cell">
+                        <div class="cell-number">10+</div>
+                        <div class="cell-label">Premium Brands</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="section-header">
+            <span class="section-tag">Service Nodes</span>
+            <h2 class="section-title">
+                Beyond Just <span class="highlight">Selling Tools</span>
+            </h2>
+            <p class="section-subtitle">
+                We offer comprehensive services to ensure you get the most out of your power tools.
+            </p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-node reveal">
+                <div class="node-icon">
+                    <i class="fas fa-wrench"></i>
+                </div>
+                <h3 class="node-title">Tool Repair & Service</h3>
+                <p class="node-desc">Expert repair and maintenance services for all major power tool brands.</p>
+                <div class="node-tags">
+                    <span class="node-tag">Genuine Parts</span>
+                    <span class="node-tag">Skilled Technicians</span>
+                </div>
+            </div>
+
+            <div class="service-node reveal">
+                <div class="node-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <h3 class="node-title">Tool Rental</h3>
+                <p class="node-desc">Rent professional-grade power tools for short-term projects.</p>
+                <div class="node-tags">
+                    <span class="node-tag">Flexible Duration</span>
+                    <span class="node-tag">Affordable Rates</span>
+                </div>
+            </div>
+
+            <div class="service-node reveal">
+                <div class="node-icon">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <h3 class="node-title">Bulk Orders</h3>
+                <p class="node-desc">Special pricing and dedicated support for contractors.</p>
+                <div class="node-tags">
+                    <span class="node-tag">Volume Discounts</span>
+                    <span class="node-tag">Priority Delivery</span>
+                </div>
+            </div>
+
+            <div class="service-node reveal">
+                <div class="node-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="node-title">Expert Consultation</h3>
+                <p class="node-desc">Get professional advice on selecting the right tools.</p>
+                <div class="node-tags">
+                    <span class="node-tag">Product Guidance</span>
+                    <span class="node-tag">Technical Support</span>
+                </div>
+            </div>
+
+            <div class="service-node reveal">
+                <div class="node-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="node-title">Warranty Support</h3>
+                <p class="node-desc">Complete warranty assistance for all products.</p>
+                <div class="node-tags">
+                    <span class="node-tag">Hassle-Free Claims</span>
+                    <span class="node-tag">Quick Resolution</span>
+                </div>
+            </div>
+
+            <div class="service-node reveal">
+                <div class="node-icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3 class="node-title">Express Delivery</h3>
+                <p class="node-desc">Fast delivery service across Tiruppur and nearby areas.</p>
+                <div class="node-tags">
+                    <span class="node-tag">Same-Day Available</span>
+                    <span class="node-tag">Secure Packaging</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands-section">
+        <div class="section-header" style="padding-top: 0;">
+            <span class="section-tag">Trusted Manufacturers</span>
+        </div>
+        <div class="brands-grid">
+            <div class="neon-sign">Bosch</div>
+            <div class="neon-sign">Makita</div>
+            <div class="neon-sign">Dewalt</div>
+            <div class="neon-sign">Hitachi</div>
+            <div class="neon-sign">Black & Decker</div>
+            <div class="neon-sign">Stanley</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <span class="section-tag">Communication Terminal</span>
+            <h2 class="section-title">
+                Get In <span class="highlight">Touch</span>
+            </h2>
+            <p class="section-subtitle">
+                Have questions about our products or services? We're here to help.
+            </p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-terminal reveal">
+                <div class="terminal-header">
+                    <div class="terminal-dot"></div>
+                    <span class="terminal-title">CONTACT_DATA.exe</span>
+                </div>
+
+                <div class="contact-item-cyber">
+                    <div class="contact-icon-cyber">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text-cyber">
+                        <h4>Location</h4>
+                        <p>Opposite Kamatchi Amman Kovil Mandapam,<br>1st Street, M.G. Pudur, Bazaar,<br>Tiruppur - 641604, Tamil Nadu</p>
+                    </div>
+                </div>
+
+                <div class="contact-item-cyber">
+                    <div class="contact-icon-cyber">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text-cyber">
+                        <h4>Direct Line</h4>
+                        <p>+91 93442 62483</p>
+                    </div>
+                </div>
+
+                <div class="contact-item-cyber">
+                    <div class="contact-icon-cyber">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text-cyber">
+                        <h4>Digital Mail</h4>
+                        <p>srimonikapowertools@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="map-cyber">
+                    <a href="https://share.google/49ogaaCim6OOFxOuZ" target="_blank">
+                        <div class="map-display">
+                            <div class="map-target">
+                                <i class="fas fa-crosshairs"></i>
+                            </div>
+                        </div>
+                        <div class="map-info">
+                            <span class="map-coords">11.1088° N, 77.3376° E</span>
+                            <span class="map-action">Open Map ></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="form-cyber reveal">
+                <h3 class="form-header">Transmit Message</h3>
+                <form id="contactForm">
+                    <div class="input-group">
+                        <label>User ID / Name</label>
+                        <input type="text" placeholder="Enter your designation" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Communication Frequency / Phone</label>
+                        <input type="tel" placeholder="+91 XXXXX XXXXX" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Digital Address / Email</label>
+                        <input type="email" placeholder="user@domain.com">
+                    </div>
+                    <div class="input-group">
+                        <label>Data Packet / Message</label>
+                        <textarea placeholder="Transmit your inquiry..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-cyber">
+                        <i class="fas fa-satellite-dish"></i> Transmit Data
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo-text">SRI MONIKA</div>
+                <div class="logo-sub">POWER TOOLS // TIRUPPUR_NET</div>
+                <p>Your trusted source for premium electric and construction power tools in Tiruppur since 2000.</p>
+                <div class="social-cyber">
+                    <a href="#" class="social-node"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-node"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-node"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-node"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="#">Drill Machines</a></li>
+                    <li><a href="#">Angle Grinders</a></li>
+                    <li><a href="#">Marble Cutters</a></li>
+                    <li><a href="#">Tile Paste & Epoxy</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Direct Link</h4>
+                <div class="contact-line">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Opposite Kamatchi Amman Kovil Mandapam,<br>1st Street, M.G. Pudur, Bazaar,br>Tiruppur - 641604, Tamil Nadu</span>
+                </div>
+                <div class="contact-line">
+                    <i class="fas fa-phone"></i>
+                    <span>+91 93442 62483</span>
+                </div>
+                <div class="contact-line">
+                    <i class="fas fa-envelope"></i>
+                    <span>srimonikapowertools@gmail.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                © 2026 SRI MONIKA POWER TOOLS // ALL RIGHTS RESERVED
+            </div>
+            <div class="system-status">
+                <span class="status-dot"></span>
+                SYSTEM ONLINE
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                navbar.style.background = 'rgba(5, 5, 8, 0.98)';
+                navbar.style.boxShadow = '0 0 30px rgba(0, 243, 255, 0.4)';
+            } else {
+                navbar.style.background = 'rgba(5, 5, 8, 0.95)';
+                navbar.style.boxShadow = '0 0 20px rgba(0, 243, 255, 0.3)';
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form Submission with Cyber Effect
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = this.querySelector('.submit-cyber');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> ENCRYPTING...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> TRANSMISSION COMPLETE';
+                btn.style.background = 'rgba(0, 255, 65, 0.2)';
+                btn.style.borderColor = 'var(--neon-green)';
+                btn.style.color = 'var(--neon-green)';
+                btn.style.boxShadow = '0 0 30px rgba(0, 255, 65, 0.4)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    btn.style.borderColor = '';
+                    btn.style.color = '';
+                    btn.style.boxShadow = '';
+                    btn.disabled = false;
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // Random Glitch Effect on Text
+        setInterval(() => {
+            const glitchElements = document.querySelectorAll('.glitch');
+            const randomElement = glitchElements[Math.floor(Math.random() * glitchElements.length)];
+            randomElement.style.animation = 'none';
+            setTimeout(() => {
+                randomElement.style.animation = '';
+            }, 100);
+        }, 5000);
+    </script>
+</body>
+</html>
