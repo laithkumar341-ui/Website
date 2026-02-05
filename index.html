@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sri Monika Power Tools - Professional Power Tools in Tiruppur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,15 +14,14 @@
         }
 
         :root {
-            --primary: #ff6b35;
-            --primary-light: #ff8c5a;
-            --secondary: #f7c59f;
-            --dark: #1a1a1a;
-            --darker: #0d0d0d;
-            --gray: #6b7280;
-            --light: #f9fafb;
-            --glass: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.18);
+            --bg-primary: #fafaf9;
+            --bg-secondary: #f5f5f4;
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --accent: #ea580c;
+            --accent-dark: #9a3412;
+            --border: #e7e5e4;
+            --whatsapp: #25D366;
         }
 
         html {
@@ -31,140 +30,274 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--darker);
-            color: white;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Gradient Background Animation */
-        .gradient-bg {
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Technical Grid Background */
+        .grid-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(247, 197, 159, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(255, 140, 90, 0.05) 0%, transparent 70%);
+            background-image: 
+                linear-gradient(rgba(231, 229, 228, 0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(231, 229, 228, 0.4) 1px, transparent 1px);
+            background-size: 60px 60px;
             z-index: -2;
-            animation: gradientMove 20s ease-in-out infinite;
         }
 
-        @keyframes gradientMove {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-2%, 2%) scale(1.1); }
-        }
-
-        /* Noise Texture Overlay */
-        .noise {
-            position: fixed;
+        .grid-bg::after {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.03;
-            z-index: -1;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background: radial-gradient(circle at 50% 50%, transparent 0%, var(--bg-primary) 100%);
         }
 
-        /* Navigation */
+        /* Navigation - Industrial Clean */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 24px 48px;
+            padding: 20px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: linear-gradient(to bottom, rgba(13,13,13,0.8) 0%, transparent 100%);
-            backdrop-filter: blur(20px);
+            background: rgba(250, 250, 249, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--border);
         }
 
         .nav-logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -1px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            letter-spacing: 2px;
             display: flex;
             align-items: center;
             gap: 12px;
+            color: var(--text-primary);
         }
 
         .nav-logo img {
             width: 40px;
             height: 40px;
-            border-radius: 12px;
+            border-radius: 4px;
             object-fit: cover;
-            border: 2px solid var(--glass-border);
+            border: 2px solid var(--border);
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 48px;
             list-style: none;
         }
 
         .nav-links a {
-            color: rgba(255,255,255,0.7);
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s;
             position: relative;
+            font-family: 'Space Mono', monospace;
         }
 
         .nav-links a:hover {
-            color: white;
+            color: var(--accent);
         }
 
         .nav-links a::after {
-            content: '';
+            content: '→';
             position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
+            right: -20px;
+            opacity: 0;
+            transition: all 0.3s;
+            color: var(--accent);
         }
 
         .nav-links a:hover::after {
-            width: 100%;
+            opacity: 1;
+            right: -16px;
         }
 
         .nav-cta {
             padding: 12px 28px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 100px;
-            color: white;
-            font-size: 14px;
+            background: var(--text-primary);
+            border: 2px solid var(--text-primary);
+            color: var(--bg-primary);
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Space Mono', monospace;
         }
 
         .nav-cta:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-2px);
+            background: transparent;
+            color: var(--text-primary);
         }
 
         .mobile-menu {
             display: none;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
+            color: var(--text-primary);
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--border);
+            background: transparent;
+            z-index: 1001;
         }
 
-        /* Hero Section */
+        /* Mobile Menu Overlay */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(28, 25, 23, 0.98);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            padding: 80px 24px;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-overlay a {
+            color: white;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            letter-spacing: 4px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .mobile-overlay a:hover {
+            color: var(--accent);
+            transform: translateX(10px);
+        }
+
+        .mobile-overlay a::before {
+            content: '//';
+            position: absolute;
+            left: -20px;
+            color: var(--accent);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .mobile-overlay a:hover::before {
+            opacity: 1;
+            left: -10px;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.2);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .close-menu:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .mobile-contact-info {
+            margin-top: 40px;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+        }
+
+        .mobile-contact-info a {
+            font-family: 'Space Mono', monospace;
+            font-size: 18px;
+            color: var(--accent);
+            display: block;
+            margin-top: 8px;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--whatsapp);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 998;
+            transition: all 0.3s;
+            text-decoration: none;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse-whatsapp {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7); }
+        }
+
+        /* Hero Section - Asymmetric Layout */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 120px 48px 80px;
+            padding: 140px 48px 80px;
             position: relative;
             overflow: hidden;
         }
@@ -174,7 +307,7 @@
             margin: 0 auto;
             width: 100%;
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1fr 1.2fr;
             gap: 80px;
             align-items: center;
         }
@@ -182,407 +315,692 @@
         .hero-content {
             position: relative;
             z-index: 2;
+            border-left: 4px solid var(--accent);
+            padding-left: 40px;
         }
 
         .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 100px;
+            font-family: 'Space Mono', monospace;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary-light);
-            margin-bottom: 32px;
-            backdrop-filter: blur(10px);
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .hero-tag::before {
             content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
         }
 
         .hero-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(48px, 8vw, 96px);
-            font-weight: 700;
-            line-height: 0.95;
-            letter-spacing: -4px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 10vw, 120px);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: 4px;
             margin-bottom: 32px;
-            background: linear-gradient(135deg, #ffffff 0%, #f7c59f 50%, #ff6b35 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
+            text-transform: uppercase;
         }
 
         .hero-title span {
             display: block;
-            font-weight: 300;
-            letter-spacing: -2px;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--text-primary);
+            letter-spacing: 8px;
         }
 
         .hero-desc {
             font-size: 18px;
             line-height: 1.7;
-            color: rgba(255,255,255,0.6);
+            color: var(--text-secondary);
             max-width: 480px;
             margin-bottom: 40px;
+            font-weight: 400;
         }
 
         .hero-buttons {
             display: flex;
             gap: 20px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .btn-primary {
-            padding: 18px 36px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border: none;
-            border-radius: 100px;
+            padding: 18px 40px;
+            background: var(--accent);
+            border: 2px solid var(--accent);
             color: white;
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Space Mono', monospace;
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 95% 100%, 0 100%);
+            text-decoration: none;
         }
 
         .btn-primary:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.4);
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 8px 8px 0px var(--text-primary);
         }
 
         .btn-outline {
-            width: 64px;
-            height: 64px;
-            border: 2px solid var(--glass-border);
-            border-radius: 50%;
-            background: var(--glass);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 18px 40px;
+            border: 2px solid var(--text-primary);
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            backdrop-filter: blur(10px);
-            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Space Mono', monospace;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 75%);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .btn-outline:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: rotate(45deg);
+            background: var(--text-primary);
+            color: var(--bg-primary);
         }
 
-        /* Hero Visual Side */
+        /* Hero Visual - Fixed Image Display */
         .hero-visual {
             position: relative;
-            height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 40px;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 560px;
+            border: 4px solid var(--text-primary);
+            box-shadow: 20px 20px 0px var(--accent);
+            background: var(--bg-secondary);
+            overflow: hidden;
         }
 
         .hero-image-main {
             width: 100%;
-            max-width: 500px;
-            height: 500px;
-            border-radius: 40px;
-            object-fit: cover;
-            position: relative;
-            z-index: 2;
-            box-shadow: 
-                0 60px 120px rgba(255, 107, 53, 0.2),
-                0 30px 60px rgba(0,0,0,0.3);
-            border: 1px solid var(--glass-border);
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
 
-        .glass-card {
+        .technical-card {
             position: absolute;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            background: var(--bg-primary);
+            border: 2px solid var(--text-primary);
             padding: 24px;
-            color: white;
             z-index: 3;
-            animation: float 6s ease-in-out infinite;
+            font-family: 'Space Mono', monospace;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
         }
 
-        .glass-card-1 {
-            top: 10%;
+        .technical-card-1 {
+            top: 0;
             right: -20px;
-            animation-delay: 0s;
+            transform: rotate(5deg);
         }
 
-        .glass-card-2 {
-            bottom: 20%;
-            left: -40px;
-            animation-delay: 2s;
+        .technical-card-2 {
+            bottom: 40px;
+            left: -20px;
+            transform: rotate(-3deg);
+            background: var(--text-primary);
+            color: var(--bg-primary);
         }
 
-        .glass-card-3 {
+        .technical-card-3 {
             top: 50%;
-            right: -60px;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            right: -40px;
+            transform: rotate(2deg);
         }
 
         .stat-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 36px;
-            font-weight: 700;
-            background: linear-gradient(135deg, white, var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            line-height: 1;
             margin-bottom: 4px;
+            color: var(--accent);
+        }
+
+        .technical-card-2 .stat-number {
+            color: var(--bg-primary);
         }
 
         .stat-label {
-            font-size: 12px;
-            color: rgba(255,255,255,0.6);
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
         }
 
-        .progress-ring {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 12px;
+        .technical-card-2 .stat-label {
+            color: rgba(255,255,255,0.7);
         }
 
-        .progress-ring circle {
-            fill: none;
-            stroke-width: 4;
+        .corner-accent {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-top: 4px solid var(--accent);
+            border-left: 4px solid var(--accent);
+            top: -10px;
+            left: -10px;
+            z-index: 10;
         }
 
-        .progress-ring .bg {
-            stroke: rgba(255,255,255,0.1);
+        .corner-accent-br {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-bottom: 4px solid var(--accent);
+            border-right: 4px solid var(--accent);
+            bottom: -10px;
+            right: -10px;
+            z-index: 10;
         }
 
-        .progress-ring .progress {
-            stroke: var(--primary);
-            stroke-dasharray: 163.36;
-            stroke-dashoffset: 40;
-            stroke-linecap: round;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-        }
-
-        /* Products Section */
+        /* Products Section - Editorial Layout */
         .products {
             padding: 120px 48px;
             position: relative;
+            background: var(--bg-secondary);
+            border-top: 2px solid var(--border);
+            border-bottom: 2px solid var(--border);
         }
 
         .section-header {
-            text-align: center;
             margin-bottom: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .section-tag {
-            display: inline-block;
-            padding: 8px 20px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 100px;
+            font-family: 'Space Mono', monospace;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary-light);
-            margin-bottom: 24px;
-            backdrop-filter: blur(10px);
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-tag::before {
+            content: '//';
+            color: var(--text-secondary);
         }
 
         .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(36px, 5vw, 64px);
-            font-weight: 700;
-            letter-spacing: -2px;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, white 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(36px, 6vw, 80px);
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: var(--text-primary);
+            line-height: 1;
+            text-transform: uppercase;
         }
 
         .section-subtitle {
-            font-size: 18px;
-            color: rgba(255,255,255,0.5);
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 400px;
+            text-align: right;
+            font-family: 'Space Mono', monospace;
         }
 
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
+            gap: 2px;
             max-width: 1200px;
             margin: 0 auto;
+            background: var(--border);
+            border: 2px solid var(--text-primary);
         }
 
         .product-card-large {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 32px;
+            background: var(--bg-primary);
             overflow: hidden;
             transition: all 0.4s;
             position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
 
         .product-card-large:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: 0 40px 80px rgba(255, 107, 53, 0.15);
+            background: var(--bg-secondary);
         }
 
         .product-image-wrap {
-            height: 280px;
-            background: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(247,197,159,0.05) 100%);
+            height: 100%;
+            min-height: 300px;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(234, 88, 12, 0.03) 10px,
+                rgba(234, 88, 12, 0.03) 20px
+            );
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            border-right: 2px solid var(--border);
         }
 
         .product-image-wrap img {
             max-width: 80%;
             max-height: 80%;
             object-fit: contain;
-            transition: transform 0.6s;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+            transition: all 0.6s;
         }
 
         .product-card-large:hover .product-image-wrap img {
-            transform: scale(1.1) rotate(-5deg);
+            transform: scale(1.05);
         }
 
         .product-badge {
             position: absolute;
             top: 20px;
-            right: 20px;
+            left: 20px;
             padding: 8px 16px;
-            background: var(--primary);
-            border-radius: 100px;
+            background: var(--accent);
+            color: white;
+            font-family: 'Space Mono', monospace;
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 90% 100%, 0 100%);
         }
 
         .product-info {
-            padding: 32px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .product-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 28px;
-            font-weight: 600;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 400;
             margin-bottom: 12px;
-            letter-spacing: -1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            line-height: 1.1;
         }
 
         .product-desc {
             font-size: 15px;
-            color: rgba(255,255,255,0.5);
+            color: var(--text-secondary);
             line-height: 1.6;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .product-features {
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
         .feature-tag {
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 100px;
+            font-family: 'Space Mono', monospace;
             font-size: 12px;
-            color: rgba(255,255,255,0.7);
+            color: var(--text-secondary);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .feature-tag i {
-            color: var(--primary);
-            font-size: 10px;
+        .feature-tag::before {
+            content: '▸';
+            color: var(--accent);
+            font-weight: bold;
         }
 
-        /* Stats Section */
+        /* View Options Button */
+        .view-options-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid var(--text-primary);
+            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Space Mono', monospace;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+        }
+
+        .view-options-btn:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 0px var(--accent);
+        }
+
+        .view-options-btn i {
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
+
+        .view-options-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Secondary Action Button - NEW */
+        .btn-secondary-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: 2px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin-top: 12px;
+            width: fit-content;
+        }
+
+        .btn-secondary-action:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary-action i {
+            font-size: 14px;
+        }
+
+        .btn-secondary-action .fa-whatsapp {
+            color: #25D366;
+        }
+
+        .btn-secondary-action .fa-phone {
+            color: var(--accent);
+        }
+
+        /* Price Context - NEW */
+        .price-context {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(28, 25, 23, 0.9);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: var(--bg-primary);
+            border: 3px solid var(--text-primary);
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 20px 20px 0px rgba(0,0,0,0.2);
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .modal-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+
+        .modal-close {
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .modal-content {
+            padding: 32px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .spec-item {
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+        }
+
+        .spec-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .spec-value {
+            font-size: 15px;
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .machine-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .machine-item {
+            border: 2px solid var(--border);
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .machine-item:hover {
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+            transform: translateX(8px);
+        }
+
+        .machine-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .machine-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .modal-cta {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid var(--border);
+            text-align: center;
+        }
+
+        .modal-btn {
+            padding: 16px 32px;
+            background: var(--accent);
+            border: 2px solid var(--accent);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Space Mono', monospace;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px var(--text-primary);
+        }
+
+        /* Stats Section - Technical Bar */
         .stats-section {
-            padding: 80px 48px;
-            background: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, transparent 100%);
+            padding: 0;
+            background: var(--text-primary);
+            border-bottom: 2px solid var(--text-primary);
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .stat-card {
             text-align: center;
-            padding: 40px 24px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            padding: 60px 24px;
+            border-right: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s;
         }
 
+        .stat-card:last-child {
+            border-right: none;
+        }
+
         .stat-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            background: rgba(255,107,53,0.1);
+            background: rgba(234, 88, 12, 0.1);
         }
 
         .stat-card-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            background: linear-gradient(135deg, white, var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 400;
+            color: var(--bg-primary);
+            line-height: 1;
             margin-bottom: 8px;
+            letter-spacing: 4px;
         }
 
         .stat-card-label {
-            font-size: 14px;
-            color: rgba(255,255,255,0.5);
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        /* About Section */
+        /* About Section - Split Layout */
         .about {
             padding: 120px 48px;
             position: relative;
@@ -593,131 +1011,154 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
+            gap: 0;
+            align-items: stretch;
+            border: 2px solid var(--text-primary);
         }
 
         .about-visual {
             position: relative;
+            border-right: 2px solid var(--text-primary);
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
         }
 
         .about-image {
             width: 100%;
-            border-radius: 40px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 60px 120px rgba(0,0,0,0.3);
+            max-width: 400px;
+            border: 4px solid var(--text-primary);
+            box-shadow: 16px 16px 0px var(--accent);
         }
 
         .experience-float {
             position: absolute;
-            bottom: -30px;
-            right: -30px;
-            padding: 32px 48px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 24px;
-            text-align: center;
-            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.4);
+            bottom: 40px;
+            right: 40px;
+            padding: 24px 32px;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            font-family: 'Space Mono', monospace;
+            border: 4px solid var(--bg-primary);
+            outline: 2px solid var(--text-primary);
         }
 
         .experience-float .years {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 64px;
-            font-weight: 700;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 56px;
+            font-weight: 400;
             line-height: 1;
+            letter-spacing: 4px;
         }
 
         .experience-float .text {
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-top: 8px;
+            margin-top: 4px;
+        }
+
+        .about-content {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .about-content h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: -2px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(32px, 4vw, 56px);
+            font-weight: 400;
+            letter-spacing: 4px;
             margin-bottom: 24px;
-            line-height: 1.1;
+            line-height: 1;
+            text-transform: uppercase;
+            color: var(--text-primary);
         }
 
         .about-content h2 span {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .about-text {
             font-size: 16px;
             line-height: 1.8;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 32px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
         }
 
         .about-features {
             display: grid;
-            gap: 20px;
+            gap: 0;
+            border-top: 2px solid var(--border);
         }
 
         .about-feature {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 20px 24px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
+            gap: 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
             transition: all 0.3s;
         }
 
         .about-feature:hover {
-            border-color: var(--primary);
-            transform: translateX(8px);
+            padding-left: 16px;
+            background: var(--bg-secondary);
+            margin: 0 -60px;
+            padding-right: 60px;
+            padding-left: 76px;
         }
 
         .about-feature-icon {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 12px;
+            background: var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
+            color: white;
+            flex-shrink: 0;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }
 
         .about-feature-text h4 {
-            font-size: 16px;
-            font-weight: 600;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 2px;
             margin-bottom: 4px;
+            text-transform: uppercase;
         }
 
         .about-feature-text p {
-            font-size: 13px;
-            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-family: 'Space Mono', monospace;
         }
 
-        /* Services Section */
+        /* Services Section - Minimal Cards */
         .services {
             padding: 120px 48px;
-            background: linear-gradient(to bottom, transparent 0%, rgba(255,107,53,0.05) 50%, transparent 100%);
+            background: var(--bg-secondary);
+            border-top: 2px solid var(--border);
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 2px;
             max-width: 1200px;
             margin: 0 auto;
+            background: var(--border);
+            border: 2px solid var(--text-primary);
         }
 
         .service-card {
-            padding: 40px 32px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            padding: 48px 32px;
+            background: var(--bg-primary);
             transition: all 0.4s;
             position: relative;
             overflow: hidden;
@@ -730,14 +1171,13 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: var(--accent);
             transform: scaleX(0);
             transition: transform 0.4s;
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
+            background: var(--bg-primary);
         }
 
         .service-card:hover::before {
@@ -747,28 +1187,35 @@
         .service-icon {
             width: 64px;
             height: 64px;
-            background: linear-gradient(135deg, rgba(255,107,53,0.2) 0%, rgba(247,197,159,0.1) 100%);
-            border-radius: 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--text-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 24px;
-            color: var(--primary);
-            border: 1px solid var(--glass-border);
+            color: var(--accent);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--accent);
+            color: white;
+            transform: rotate(45deg);
         }
 
         .service-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 24px;
-            font-weight: 600;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
             margin-bottom: 12px;
-            letter-spacing: -1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .service-card p {
             font-size: 15px;
-            color: rgba(255,255,255,0.5);
+            color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 20px;
         }
@@ -780,16 +1227,74 @@
         }
 
         .service-tag {
-            padding: 6px 14px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 100px;
+            padding: 6px 12px;
+            background: transparent;
+            border: 1px solid var(--border);
             font-size: 11px;
-            color: rgba(255,255,255,0.6);
+            color: var(--text-secondary);
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Contact Section */
+        /* Why Buy From Us Section - NEW */
+        .why-buy-section {
+            padding: 80px 48px;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border-top: 4px solid var(--accent);
+        }
+
+        .why-buy-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .why-buy-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(32px, 5vw, 48px);
+            letter-spacing: 4px;
+            margin-bottom: 48px;
+            text-transform: uppercase;
+            color: var(--bg-primary);
+        }
+
+        .why-buy-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .why-buy-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.9);
+            padding: 20px;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .why-buy-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .why-buy-item i {
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        /* Contact Section - Industrial Form */
         .contact {
             padding: 120px 48px;
+            background: var(--bg-primary);
         }
 
         .contact-container {
@@ -797,144 +1302,138 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 64px;
+            gap: 0;
+            border: 2px solid var(--text-primary);
+        }
+
+        .contact-info {
+            padding: 60px;
+            background: var(--bg-secondary);
+            border-right: 2px solid var(--text-primary);
         }
 
         .contact-info h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: -2px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 400;
+            letter-spacing: 4px;
             margin-bottom: 16px;
+            text-transform: uppercase;
+            line-height: 1;
         }
 
         .contact-info > p {
-            font-size: 18px;
-            color: rgba(255,255,255,0.5);
+            font-size: 16px;
+            color: var(--text-secondary);
             margin-bottom: 48px;
+            font-family: 'Space Mono', monospace;
         }
 
         .contact-cards {
             display: grid;
-            gap: 20px;
+            gap: 0;
+            border-top: 2px solid var(--border);
         }
 
         .contact-card {
-            padding: 28px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             gap: 20px;
             transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
         }
 
         .contact-card:hover {
-            border-color: var(--primary);
-            transform: translateX(8px);
+            padding-left: 16px;
+            color: var(--accent);
+            background: rgba(234, 88, 12, 0.05);
         }
 
         .contact-card-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 16px;
+            width: 48px;
+            height: 48px;
+            background: var(--bg-primary);
+            border: 2px solid var(--text-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             flex-shrink: 0;
+            color: var(--accent);
         }
 
         .contact-card-text h4 {
-            font-size: 14px;
-            color: rgba(255,255,255,0.5);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-secondary);
             margin-bottom: 6px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .contact-card-text p {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
         }
 
         .map-card-large {
             margin-top: 32px;
             height: 200px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            overflow: hidden;
-            position: relative;
+            background: var(--text-primary);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            width: 100%;
         }
 
         .map-card-large:hover {
-            border-color: var(--primary);
+            background: var(--accent);
         }
 
         .map-pattern-large {
             position: absolute;
             inset: 0;
-            opacity: 0.3;
+            opacity: 0.2;
             background-image: 
-                linear-gradient(rgba(255,107,53,0.2) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,107,53,0.2) 1px, transparent 1px);
-            background-size: 30px 30px;
+                linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
         .map-pin-large {
             position: relative;
             z-index: 2;
             text-align: center;
+            color: white;
         }
 
         .map-pin-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 12px;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
-            animation: pinBounce 2s ease-in-out infinite;
-        }
-
-        .map-pin-icon i {
-            transform: rotate(45deg);
-            font-size: 24px;
-        }
-
-        @keyframes pinBounce {
-            0%, 100% { transform: rotate(-45deg) translateY(0); }
-            50% { transform: rotate(-45deg) translateY(-10px); }
+            font-size: 32px;
+            margin-bottom: 8px;
         }
 
         .contact-form-wrap {
-            padding: 48px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 32px;
+            padding: 60px;
+            background: var(--bg-primary);
         }
 
         .contact-form-wrap h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 32px;
-            font-weight: 600;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            font-weight: 400;
             margin-bottom: 32px;
-            letter-spacing: -1px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
         }
 
         .form-group {
@@ -943,32 +1442,34 @@
 
         .form-group label {
             display: block;
-            font-size: 13px;
-            font-weight: 600;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 10px;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 16px 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            color: white;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            color: var(--text-primary);
             font-size: 16px;
-            font-family: inherit;
+            font-family: 'Inter', sans-serif;
             transition: all 0.3s;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
-            border-color: var(--primary);
-            background: rgba(255,107,53,0.05);
+            border-color: var(--accent);
+            background: var(--bg-primary);
         }
 
         .form-group textarea {
@@ -979,14 +1480,17 @@
         .submit-btn-large {
             width: 100%;
             padding: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border: none;
-            border-radius: 16px;
+            background: var(--text-primary);
+            border: 2px solid var(--text-primary);
             color: white;
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Space Mono', monospace;
+            clip-path: polygon(0 0, 100% 0, 100% 75%, 98% 100%, 0 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -994,14 +1498,75 @@
         }
 
         .submit-btn-large:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
         }
 
-        /* Footer */
+        .submit-btn-large:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Mobile Sticky Bottom Bar - NEW */
+        .mobile-sticky-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--bg-primary);
+            border-top: 2px solid var(--text-primary);
+            z-index: 997;
+            padding: 12px 16px;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            gap: 12px;
+        }
+
+        .sticky-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 10px 8px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--text-primary);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .sticky-btn i {
+            font-size: 18px;
+        }
+
+        .sticky-btn.whatsapp {
+            background: #25D366;
+            border-color: #25D366;
+            color: white;
+        }
+
+        .sticky-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Footer - Technical */
         footer {
             padding: 80px 48px 40px;
-            border-top: 1px solid var(--glass-border);
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border-top: 4px solid var(--accent);
+            position: relative;
+            z-index: 1;
         }
 
         .footer-container {
@@ -1014,6 +1579,8 @@
             grid-template-columns: 2fr 1fr 1fr 2fr;
             gap: 64px;
             margin-bottom: 64px;
+            padding-bottom: 64px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .footer-brand .logo {
@@ -1026,19 +1593,19 @@
         .footer-brand .logo img {
             width: 48px;
             height: 48px;
-            border-radius: 16px;
-            border: 2px solid var(--glass-border);
+            border-radius: 4px;
+            border: 2px solid rgba(255,255,255,0.2);
         }
 
         .footer-brand .logo span {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            letter-spacing: 4px;
         }
 
         .footer-brand p {
             font-size: 15px;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.5);
             line-height: 1.7;
             margin-bottom: 24px;
         }
@@ -1051,31 +1618,41 @@
         .social-link {
             width: 44px;
             height: 44px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 18px;
             transition: all 0.3s;
-            backdrop-filter: blur(10px);
+            text-decoration: none;
         }
 
         .social-link:hover {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: var(--accent);
+            border-color: var(--accent);
             transform: translateY(-4px);
         }
 
+        .social-link.whatsapp {
+            background: var(--whatsapp);
+            border-color: var(--whatsapp);
+        }
+
+        .social-link.whatsapp:hover {
+            background: #128C7E;
+            border-color: #128C7E;
+        }
+
         .footer-links h4 {
-            font-size: 14px;
-            font-weight: 600;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 24px;
-            color: rgba(255,255,255,0.8);
+            color: var(--accent);
         }
 
         .footer-links ul {
@@ -1083,31 +1660,33 @@
         }
 
         .footer-links li {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.5);
             text-decoration: none;
-            font-size: 15px;
+            font-size: 14px;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-family: 'Space Mono', monospace;
         }
 
         .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(4px);
+            color: var(--accent);
+            padding-left: 8px;
         }
 
         .footer-contact h4 {
-            font-size: 14px;
-            font-weight: 600;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 24px;
-            color: rgba(255,255,255,0.8);
+            color: var(--accent);
         }
 
         .footer-contact-item {
@@ -1115,45 +1694,49 @@
             align-items: flex-start;
             gap: 12px;
             margin-bottom: 16px;
-            color: rgba(255,255,255,0.4);
-            font-size: 15px;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
             line-height: 1.6;
+            font-family: 'Space Mono', monospace;
         }
 
         .footer-contact-item i {
-            color: var(--primary);
+            color: var(--accent);
             margin-top: 4px;
         }
 
         .footer-bottom {
             padding-top: 40px;
-            border-top: 1px solid var(--glass-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
-        }
-
-        .footer-bottom p {
-            font-size: 14px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
             color: rgba(255,255,255,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Responsive */
+        /* MOBILE RESPONSIVE FIXES */
         @media (max-width: 1024px) {
             .hero-container {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 40px;
             }
 
             .hero-content {
+                border-left: none;
+                border-top: 4px solid var(--accent);
+                padding-left: 0;
+                padding-top: 40px;
                 order: 2;
             }
 
-            .hero-visual {
-                order: 1;
-                height: 400px;
+            .hero-title span {
+                -webkit-text-stroke: 1px var(--text-primary);
             }
 
             .hero-desc {
@@ -1162,23 +1745,89 @@
 
             .hero-buttons {
                 justify-content: center;
+                flex-wrap: wrap;
             }
 
-            .glass-card {
+            .hero-visual {
+                order: 1;
+                padding: 20px;
+            }
+
+            .hero-image-wrapper {
+                max-width: 400px;
+                box-shadow: 10px 10px 0px var(--accent);
+                margin: 0 auto;
+            }
+
+            .technical-card {
                 display: none;
             }
 
-            .products-grid,
-            .stats-grid,
-            .services-grid,
-            .about-container,
-            .contact-container,
-            .footer-top {
+            .corner-accent, .corner-accent-br {
+                display: none;
+            }
+
+            .products-grid {
                 grid-template-columns: 1fr;
+                border: none;
+                background: transparent;
+                gap: 24px;
+            }
+
+            .product-card-large {
+                grid-template-columns: 1fr;
+                border: 2px solid var(--text-primary);
+            }
+
+            .product-image-wrap {
+                border-right: none;
+                border-bottom: 2px solid var(--border);
+                min-height: 250px;
             }
 
             .stats-grid {
-                gap: 20px;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-card {
+                border-right: 1px solid rgba(255,255,255,0.1);
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding: 40px 20px;
+            }
+
+            .stat-card:nth-child(2n) {
+                border-right: none;
+            }
+
+            .stat-card:nth-child(3), .stat-card:nth-child(4) {
+                border-bottom: none;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                border: none;
+                background: transparent;
+                gap: 16px;
+            }
+
+            .service-card {
+                border: 2px solid var(--text-primary);
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                border: none;
+            }
+
+            .about-visual {
+                border-right: none;
+                border-bottom: 2px solid var(--text-primary);
+                padding: 40px 20px;
+            }
+
+            .about-image {
+                max-width: 300px;
+                box-shadow: 10px 10px 0px var(--accent);
             }
 
             .experience-float {
@@ -1186,18 +1835,72 @@
                 bottom: auto;
                 right: auto;
                 margin-top: 20px;
+                display: inline-block;
+            }
+
+            .about-content {
+                padding: 40px 24px;
+            }
+
+            .about-feature:hover {
+                margin: 0;
+                padding: 24px 0;
+                padding-left: 16px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                border: none;
+            }
+
+            .contact-info {
+                border-right: none;
+                border-bottom: 2px solid var(--text-primary);
+                padding: 40px 24px;
+            }
+
+            .contact-form-wrap {
+                padding: 40px 24px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .footer-brand .logo {
+                justify-content: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .footer-links a {
+                justify-content: center;
+            }
+
+            .footer-contact-item {
+                justify-content: center;
+                text-align: left;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
             }
 
             nav {
-                padding: 20px 24px;
+                padding: 16px 24px;
             }
 
-            .nav-links {
+            .nav-links, .nav-cta {
                 display: none;
             }
 
             .mobile-menu {
-                display: block;
+                display: flex;
             }
 
             .hero,
@@ -1207,30 +1910,339 @@
             .contact {
                 padding: 80px 24px;
             }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .section-subtitle {
+                text-align: center;
+            }
+
+            .btn-primary, .btn-outline {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            /* Mobile Sticky Bar */
+            .mobile-sticky-bar {
+                display: flex;
+            }
+
+            footer {
+                padding-bottom: 100px;
+            }
+
+            /* Why Buy Grid Mobile */
+            .why-buy-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .why-buy-section {
+                padding: 60px 24px;
+            }
+
+            .why-buy-item {
+                font-size: 12px;
+                padding: 16px 8px;
+            }
+
+            /* Product Card Mobile Adjustments */
+            .product-info {
+                padding: 24px;
+            }
+
+            .btn-secondary-action {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Modal Mobile Styles */
+            .modal-container {
+                max-height: 95vh;
+                margin: 10px;
+            }
+
+            .modal-content {
+                padding: 24px;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .modal-title {
+                font-size: 24px;
+            }
+
+            .machine-item:hover {
+                transform: none;
+            }
         }
 
         @media (max-width: 640px) {
             .hero-title {
-                letter-spacing: -2px;
+                letter-spacing: 2px;
+                font-size: clamp(40px, 12vw, 64px);
             }
 
-            .product-card-large {
-                border-radius: 24px;
+            .section-title {
+                letter-spacing: 2px;
+                font-size: clamp(32px, 10vw, 48px);
             }
 
-            .product-image-wrap {
-                height: 220px;
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
             }
 
-            .contact-form-wrap {
-                padding: 32px;
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
+
+            .stat-card {
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .stat-card:last-child {
+                border-bottom: none;
+            }
+
+            .stat-card-number {
+                font-size: 48px;
+            }
+
+            .about-content h2 {
+                letter-spacing: 2px;
+            }
+
+            .experience-float .years {
+                font-size: 40px;
+            }
+
+            .contact-info h2 {
+                letter-spacing: 2px;
+            }
+
+            .contact-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .map-card-large {
+                height: 150px;
+            }
+
+            .product-title {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .product-desc {
+                font-size: 14px;
+                line-height: 1.5;
+                margin-bottom: 16px;
+            }
+
+            .mobile-overlay a {
+                font-size: 36px;
+            }
+
+            /* Why Buy Single Column on Small Mobile */
+            .why-buy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-buy-item {
+                justify-content: flex-start;
+            }
+
+            /* Sticky Bar Smaller Text */
+            .sticky-btn {
+                font-size: 10px;
+                padding: 8px 4px;
+            }
+
+            .sticky-btn i {
+                font-size: 16px;
+            }
+        }
+
+        /* Utility for reveal animation */
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="gradient-bg"></div>
-    <div class="noise"></div>
+    <div class="grid-bg"></div>
+
+    <!-- Modals -->
+    <!-- Drill Machine Modal -->
+    <div class="modal-overlay" id="drillModal" onclick="closeModal('drillModal')">
+        <div class="modal-container" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title">DRILL MACHINE OPTIONS</h3>
+                <button class="modal-close" onclick="closeModal('drillModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-label">Types Available</div>
+                        <div class="spec-value">Rotary Drill, Hammer Drill, SDS Rotary Hammer, Impact Drill, Cordless Drill</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Power Options</div>
+                        <div class="spec-value">500W / 650W / 750W / 900W | 12V / 18V / 20V (Cordless)</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Chuck Size</div>
+                        <div class="spec-value">6.5mm / 10mm / 13mm</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Key Features</div>
+                        <div class="spec-value">Variable Speed, Forward/Reverse, Hammer Function, Ergonomic Grip</div>
+                    </div>
+                    <div class="spec-item" style="grid-column: 1 / -1;">
+                        <div class="spec-label">Suitable For</div>
+                        <div class="spec-value">Wood, Metal, Concrete, Masonry, Tile, Plastic</div>
+                    </div>
+                </div>
+                <div class="modal-cta">
+                    <a href="https://wa.me/919344262483?text=Hi%20Sri%20Monika%20Power%20Tools,%20I'm%20interested%20in%20Drill%20Machines" target="_blank" class="modal-btn">
+                        <i class="fab fa-whatsapp"></i> Enquire Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Angle Grinder Modal -->
+    <div class="modal-overlay" id="grinderModal" onclick="closeModal('grinderModal')">
+        <div class="modal-container" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title">ANGLE GRINDER OPTIONS</h3>
+                <button class="modal-close" onclick="closeModal('grinderModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-label">Disc Size</div>
+                        <div class="spec-value">4" / 5" / 7" / 9"</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Power Options</div>
+                        <div class="spec-value">800W / 900W / 1100W / 2200W</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Type</div>
+                        <div class="spec-value">Corded / Cordless (Battery Operated)</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Key Features</div>
+                        <div class="spec-value">Side Handle, Safety Guard, Lock-On Switch, High RPM Motor</div>
+                    </div>
+                    <div class="spec-item" style="grid-column: 1 / -1;">
+                        <div class="spec-label">Applications</div>
+                        <div class="spec-value">Metal Cutting, Grinding, Polishing, Stone & Tile Cutting, Rust Removal</div>
+                    </div>
+                </div>
+                <div class="modal-cta">
+                    <a href="https://wa.me/919344262483?text=Hi%20Sri%20Monika%20Power%20Tools,%20I'm%20interested%20in%20Angle%20Grinders" target="_blank" class="modal-btn">
+                        <i class="fab fa-whatsapp"></i> Enquire Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Marble/Cutting Machine Modal -->
+    <div class="modal-overlay" id="cutterModal" onclick="closeModal('cutterModal')">
+        <div class="modal-container" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 class="modal-title">CUTTING MACHINE OPTIONS</h3>
+                <button class="modal-close" onclick="closeModal('cutterModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="machine-list">
+                    <div class="machine-item">
+                        <div class="machine-name">Marble Cutter</div>
+                        <div class="machine-desc">4"–5" blade, adjustable depth, wet/dry cutting capability, ideal for tiles & stone work</div>
+                    </div>
+                    <div class="machine-item">
+                        <div class="machine-name">Metal Cut-Off / Chop Saw</div>
+                        <div class="machine-desc">12"–14" disc, table-top design, perfect for steel rods, pipes, and angles</div>
+                    </div>
+                    <div class="machine-item">
+                        <div class="machine-name">Concrete / Masonry Cutter</div>
+                        <div class="machine-desc">12"–16" diamond blade, available in electric or petrol variants, heavy-duty construction</div>
+                    </div>
+                    <div class="machine-item">
+                        <div class="machine-name">Tile Cutting Machine</div>
+                        <div class="machine-desc">Manual & electric options, precision cutting for ceramic & porcelain tiles</div>
+                    </div>
+                    <div class="machine-item">
+                        <div class="machine-name">Table Saw</div>
+                        <div class="machine-desc">Portable electric design, professional wood & board cutting with adjustable rip fence</div>
+                    </div>
+                </div>
+                <div class="modal-cta">
+                    <a href="https://wa.me/919344262483?text=Hi%20Sri%20Monika%20Power%20Tools,%20I'm%20interested%20in%20Cutting%20Machines" target="_blank" class="modal-btn">
+                        <i class="fab fa-whatsapp"></i> Enquire Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#home" onclick="toggleMobileMenu()">Home</a>
+        <a href="#products" onclick="toggleMobileMenu()">Products</a>
+        <a href="#about" onclick="toggleMobileMenu()">About</a>
+        <a href="#services" onclick="toggleMobileMenu()">Services</a>
+        <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+        
+        <div class="mobile-contact-info">
+            <div>Call us directly</div>
+            <a href="tel:+919344262483">+91 93442 62483</a>
+            <div style="margin-top: 20px;">
+                <a href="https://wa.me/919344262483" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background: #25D366; padding: 12px 24px; color: white; font-family: 'Space Mono', monospace; font-size: 14px; text-decoration: none; clip-path: polygon(0 0, 100% 0, 100% 75%, 95% 100%, 0 100%);">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919344262483?text=Hi%20Sri%20Monika%20Power%20Tools,%20I'm%20interested%20in%20your%20products" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Navigation -->
     <nav>
@@ -1246,7 +2258,9 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get in touch</button>
-        <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+        <button class="mobile-menu" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
     </nav>
 
     <!-- Hero Section -->
@@ -1264,32 +2278,32 @@
                     Your trusted source for professional electric and construction power tools in Tiruppur. Quality tools from Bosch, Makita, Dewalt & more with 25+ years of excellence.
                 </p>
                 <div class="hero-buttons">
-                    <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
-                        Explore Tools <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
-                        <i class="fas fa-phone"></i>
-                    </button>
+                    <a href="https://wa.me/919344262483?text=Hi%20Sri%20Monika%20Power%20Tools,%20I'm%20interested%20in%20your%20products" target="_blank" class="btn-primary">
+                        <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                    </a>
+                    <a href="tel:+919344262483" class="btn-outline">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
                 </div>
             </div>
             <div class="hero-visual">
-                <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/hero-bg.jpg" alt="Power Tools" class="hero-image-main">
+                <div class="corner-accent"></div>
+                <div class="hero-image-wrapper">
+                    <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/hero-bg.jpg" alt="Power Tools" class="hero-image-main">
+                </div>
+                <div class="corner-accent-br"></div>
                 
-                <div class="glass-card glass-card-1">
+                <div class="technical-card technical-card-1">
                     <div class="stat-number">25+</div>
                     <div class="stat-label">Years Experience</div>
                 </div>
                 
-                <div class="glass-card glass-card-2">
-                    <svg class="progress-ring" viewBox="0 0 60 60">
-                        <circle class="bg" cx="30" cy="30" r="26"></circle>
-                        <circle class="progress" cx="30" cy="30" r="26"></circle>
-                    </svg>
+                <div class="technical-card technical-card-2">
                     <div class="stat-number">5K+</div>
                     <div class="stat-label">Happy Customers</div>
                 </div>
                 
-                <div class="glass-card glass-card-3">
+                <div class="technical-card technical-card-3">
                     <div class="stat-number">50+</div>
                     <div class="stat-label">Product Types</div>
                 </div>
@@ -1300,12 +2314,15 @@
     <!-- Products Section -->
     <section class="products" id="products">
         <div class="section-header">
-            <div class="section-tag">Our Collection</div>
-            <h2 class="section-title">Professional Grade Tools</h2>
+            <div>
+                <div class="section-tag">Our Collection</div>
+                <h2 class="section-title">Professional Grade Tools</h2>
+            </div>
             <p class="section-subtitle">Comprehensive range of electric and construction power tools from world-renowned brands</p>
         </div>
         
         <div class="products-grid">
+            <!-- Drill Machine -->
             <div class="product-card-large reveal">
                 <div class="product-image-wrap">
                     <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/drill-machine.jpg" alt="Drill Machine">
@@ -1313,45 +2330,69 @@
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">Drill Machines</h3>
-                    <p class="product-desc">Corded and cordless drill machines with powerful motors and variable speed control for all drilling needs.</p>
+                    <p class="product-desc">Professional drill machines for home users, electricians, and site contractors. Designed for smooth drilling in wood, metal, and concrete with reliable performance and long life.</p>
                     <div class="product-features">
-                        <span class="feature-tag"><i class="fas fa-check"></i> Cordless</span>
-                        <span class="feature-tag"><i class="fas fa-check"></i> Variable Speed</span>
-                        <span class="feature-tag"><i class="fas fa-check"></i> Hammer Function</span>
+                        <span class="feature-tag">Cordless Options</span>
+                        <span class="feature-tag">Variable Speed</span>
+                        <span class="feature-tag">Hammer Function</span>
                     </div>
+                    <button class="view-options-btn" onclick="openModal('drillModal')">
+                        View Options <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <a href="https://wa.me/919344262483?text=Hi%20Sri%20Monika%20Power%20Tools,%20I'm%20interested%20in%20Drill%20Machine%20price%20details" target="_blank" class="btn-secondary-action">
+                        <i class="fab fa-whatsapp"></i> WhatsApp for Price
+                    </a>
+                    <p class="price-context">Budget & premium models available</p>
                 </div>
             </div>
 
+            <!-- Angle Grinder -->
             <div class="product-card-large reveal">
                 <div class="product-image-wrap">
                     <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/angle-grinder.jpg" alt="Angle Grinder">
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">Angle Grinders</h3>
-                    <p class="product-desc">Heavy-duty angle grinders for cutting, grinding, and polishing applications with safety features.</p>
+                    <p class="product-desc">Heavy-duty angle grinders for metal workers, fabricators, and construction professionals. Ideal for cutting, grinding, and polishing metal, tile, and stone with strong motor power.</p>
                     <div class="product-features">
-                        <span class="feature-tag"><i class="fas fa-check"></i> 4" to 9" Sizes</span>
-                        <span class="feature-tag"><i class="fas fa-check"></i> Safety Guard</span>
-                        <span class="feature-tag"><i class="fas fa-check"></i> Ergonomic</span>
+                        <span class="feature-tag">4" to 9" Sizes</span>
+                        <span class="feature-tag">Safety Guard</span>
+                        <span class="feature-tag">Ergonomic Design</span>
                     </div>
+                    <button class="view-options-btn" onclick="openModal('grinderModal')">
+                        View Options <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <a href="https://wa.me/919344262483?text=Hi%20Sri%20Monika%20Power%20Tools,%20I'm%20interested%20in%20Angle%20Grinder%20price%20details" target="_blank" class="btn-secondary-action">
+                        <i class="fab fa-whatsapp"></i> WhatsApp for Price
+                    </a>
+                    <p class="price-context">Available in multiple price ranges</p>
                 </div>
             </div>
 
+            <!-- Marble Cutter -->
             <div class="product-card-large reveal">
                 <div class="product-image-wrap">
                     <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/marble-cutter.jpg" alt="Marble Cutter">
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Marble Cutters</h3>
-                    <p class="product-desc">Precision cutting tools for marble, granite, and tile work with clean cuts every time.</p>
+                    <h3 class="product-title">Cutting Machines</h3>
+                    <p class="product-desc">Reliable cutting machines for tilers, masons, and construction contractors. Engineered for clean and accurate cuts in marble, metal, concrete, tiles, and wood.</p>
                     <div class="product-features">
-                        <span class="feature-tag"><i class="fas fa-check"></i> Wet/Dry Cutting</span>
-                        <span class="feature-tag"><i class="fas fa-check"></i> Adjustable Depth</span>
-                        <span class="feature-tag"><i class="fas fa-check"></i> Dust Extraction</span>
+                        <span class="feature-tag">Wet/Dry Cutting</span>
+                        <span class="feature-tag">Adjustable Depth</span>
+                        <span class="feature-tag">Multi-Material</span>
                     </div>
+                    <button class="view-options-btn" onclick="openModal('cutterModal')">
+                        View Options <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <a href="https://wa.me/919344262483?text=Hi%20Sri%20Monika%20Power%20Tools,%20I'm%20interested%20in%20Cutting%20Machine%20price%20details" target="_blank" class="btn-secondary-action">
+                        <i class="fas fa-phone"></i> Call for Best Price
+                    </a>
+                    <p class="price-context">Multiple brands & price points available</p>
                 </div>
             </div>
 
+            <!-- Tile Paste & Epoxy -->
             <div class="product-card-large reveal">
                 <div class="product-image-wrap">
                     <img src="https://raw.githubusercontent.com/laithkumar341-ui/Srimonikapowetools/main/tile-epoxy.jpg" alt="Tile Paste & Epoxy">
@@ -1360,9 +2401,9 @@
                     <h3 class="product-title">Tile Paste & Epoxy</h3>
                     <p class="product-desc">Professional adhesives, epoxy, and finishing materials for tile installation and construction.</p>
                     <div class="product-features">
-                        <span class="feature-tag"><i class="fas fa-check"></i> Adhesives</span>
-                        <span class="feature-tag"><i class="fas fa-check"></i> Epoxy Grout</span>
-                        <span class="feature-tag"><i class="fas fa-check"></i> Waterproofing</span>
+                        <span class="feature-tag">High-Strength Adhesives</span>
+                        <span class="feature-tag">Epoxy Grout</span>
+                        <span class="feature-tag">Waterproofing</span>
                     </div>
                 </div>
             </div>
@@ -1438,9 +2479,11 @@
 
     <!-- Services Section -->
     <section class="services" id="services">
-        <div class="section-header">
-            <div class="section-tag">What We Offer</div>
-            <h2 class="section-title">Beyond Just Selling Tools</h2>
+        <div class="section-header" style="margin-bottom: 60px;">
+            <div>
+                <div class="section-tag">What We Offer</div>
+                <h2 class="section-title">Beyond Just Selling Tools</h2>
+            </div>
             <p class="section-subtitle">Comprehensive services to ensure you get the most out of your power tools</p>
         </div>
 
@@ -1491,7 +2534,7 @@
                 <p>Complete warranty assistance for all products with hassle-free claims process.</p>
                 <div class="service-tags">
                     <span class="service-tag">Claims</span>
-                    <span class="service-tag">Quick</span>
+                    <span class="service-tag">Quick Process</span>
                 </div>
             </div>
 
@@ -1516,31 +2559,31 @@
                 <p>Have questions about our products or services? We're here to help you find the perfect tools.</p>
                 
                 <div class="contact-cards">
-                    <div class="contact-card">
+                    <a href="https://maps.google.com/?q=Sri+Monika+Power+Tools+Tiruppur" target="_blank" class="contact-card">
                         <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div class="contact-card-text">
                             <h4>Visit Us</h4>
                             <p>Opposite Kamatchi Amman Kovil Mandapam, 1st Street, M.G. Pudur, Bazaar, Tiruppur - 641604</p>
                         </div>
-                    </div>
+                    </a>
                     
-                    <div class="contact-card">
+                    <a href="tel:+919344262483" class="contact-card">
                         <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
                         <div class="contact-card-text">
                             <h4>Call Us</h4>
                             <p>+91 93442 62483</p>
                         </div>
-                    </div>
+                    </a>
                     
-                    <div class="contact-card">
+                    <a href="mailto:srimonikapowertools@gmail.com" class="contact-card">
                         <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
                         <div class="contact-card-text">
                             <h4>Email Us</h4>
                             <p>srimonikapowertools@gmail.com</p>
                         </div>
-                    </div>
+                    </a>
                     
-                    <div class="contact-card">
+                    <div class="contact-card" style="cursor: default;">
                         <div class="contact-card-icon"><i class="fas fa-clock"></i></div>
                         <div class="contact-card-text">
                             <h4>Business Hours</h4>
@@ -1549,38 +2592,75 @@
                     </div>
                 </div>
 
-                <a href="https://share.google/49ogaaCim6OOFxOuZ" target="_blank" class="map-card-large">
+                <a href="https://maps.google.com/?q=Sri+Monika+Power+Tools+Tiruppur" target="_blank" class="map-card-large">
                     <div class="map-pattern-large"></div>
                     <div class="map-pin-large">
                         <div class="map-pin-icon"><i class="fas fa-store"></i></div>
-                        <div style="font-weight: 600;">View on Google Maps</div>
+                        <div style="font-weight: 700; font-family: 'Space Mono', monospace; font-size: 14px; letter-spacing: 2px;">VIEW ON GOOGLE MAPS</div>
                     </div>
                 </a>
             </div>
 
             <div class="contact-form-wrap reveal">
                 <h3>Send us a message</h3>
-                <form id="contactForm">
+                <form id="contactForm" onsubmit="sendToWhatsApp(event)">
                     <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" placeholder="John Doe" required>
+                        <label>Your Name *</label>
+                        <input type="text" id="formName" placeholder="John Doe" required>
                     </div>
                     <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" placeholder="+91 98765 43210" required>
+                        <label>Phone Number *</label>
+                        <input type="tel" id="formPhone" placeholder="+91 98765 43210" required>
                     </div>
                     <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" placeholder="john@example.com">
+                        <label>Interested Product</label>
+                        <select id="formProduct" style="cursor: pointer;">
+                            <option value="">Select a product (optional)</option>
+                            <option value="Drill Machine">Drill Machine</option>
+                            <option value="Angle Grinder">Angle Grinder</option>
+                            <option value="Marble Cutter">Marble Cutter</option>
+                            <option value="Tile Paste & Epoxy">Tile Paste & Epoxy</option>
+                            <option value="Tool Repair">Tool Repair Service</option>
+                            <option value="Tool Rental">Tool Rental</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Message</label>
-                        <textarea placeholder="Tell us what you're looking for..." required></textarea>
+                        <label>Message *</label>
+                        <textarea id="formMessage" placeholder="Tell us what you're looking for..." required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn-large">
-                        Send Message <i class="fas fa-paper-plane"></i>
+                    <button type="submit" class="submit-btn-large" id="submitBtn">
+                        <i class="fab fa-whatsapp"></i> Send via WhatsApp
                     </button>
+                    <p style="margin-top: 16px; font-size: 12px; color: var(--text-secondary); text-align: center; font-family: 'Space Mono', monospace;">
+                        <i class="fas fa-info-circle"></i> Clicking will open WhatsApp with your message
+                    </p>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Buy From Us Section - NEW -->
+    <section class="why-buy-section">
+        <div class="why-buy-container">
+            <h2 class="why-buy-title">Why Buy From Us</h2>
+            <div class="why-buy-grid">
+                <div class="why-buy-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>25+ Years Experience</span>
+                </div>
+                <div class="why-buy-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Genuine Branded Products</span>
+                </div>
+                <div class="why-buy-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Expert Guidance</span>
+                </div>
+                <div class="why-buy-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>After-Sales Support</span>
+                </div>
             </div>
         </div>
     </section>
@@ -1598,28 +2678,28 @@
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                        <a href="https://wa.me/919344262483" target="_blank" class="social-link whatsapp" title="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:srimonikapowertools@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
 
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#products"><i class="fas fa-chevron-right"></i> Products</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-links">
                     <h4>Products</h4>
                     <ul>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Drill Machines</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Angle Grinders</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Marble Cutters</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+                        <li><a href="#">Drill Machines</a></li>
+                        <li><a href="#">Angle Grinders</a></li>
+                        <li><a href="#">Marble Cutters</a></li>
+                        <li><a href="#">Accessories</a></li>
                     </ul>
                 </div>
 
@@ -1647,7 +2727,53 @@
         </div>
     </footer>
 
+    <!-- Mobile Sticky Bottom Bar - NEW -->
+    <div class="mobile-sticky-bar">
+        <a href="tel:+919344262483" class="sticky-btn">
+            <i class="fas fa-phone"></i>
+            <span>Call</span>
+        </a>
+        <a href="https://wa.me/919344262483?text=Hi%20Sri%20Monika%20Power%20Tools,%20I'm%20interested%20in%20your%20products" target="_blank" class="sticky-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="https://maps.google.com/?q=Sri+Monika+Power+Tools+Tiruppur" target="_blank" class="sticky-btn">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Directions</span>
+        </a>
+    </div>
+
     <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const activeModal = document.querySelector('.modal-overlay.active');
+                if (activeModal) {
+                    closeModal(activeModal.id);
+                }
+            }
+        });
+
         // Scroll Reveal
         const revealElements = document.querySelectorAll('.reveal');
         
@@ -1669,41 +2795,75 @@
         // Initialize reveal elements
         revealElements.forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(40px)';
-            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
         });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // WhatsApp Form Integration
+        function sendToWhatsApp(e) {
             e.preventDefault();
-            const btn = this.querySelector('.submit-btn-large');
-            const originalText = btn.innerHTML;
             
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            const name = document.getElementById('formName').value;
+            const phone = document.getElementById('formPhone').value;
+            const product = document.getElementById('formProduct').value;
+            const message = document.getElementById('formMessage').value;
+            const btn = document.getElementById('submitBtn');
+            
+            // Construct WhatsApp message
+            let text = `Hello Sri Monika Power Tools!%0A%0A`;
+            text += `*Name:* ${name}%0A`;
+            text += `*Phone:* ${phone}%0A`;
+            if (product) {
+                text += `*Interested in:* ${product}%0A`;
+            }
+            text += `*Message:* ${message}%0A%0A`;
+            text += `Please contact me regarding this. Thank you!`;
+            
+            // Show loading state
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening WhatsApp...';
             btn.disabled = true;
             
+            // Open WhatsApp after short delay (for UX)
             setTimeout(() => {
+                window.open(`https://wa.me/919344262483?text=${text}`, '_blank');
+                
+                // Reset button
                 btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                btn.style.background = '#10b981';
+                btn.style.background = '#25D366';
+                btn.style.borderColor = '#25D366';
                 
                 setTimeout(() => {
-                    btn.innerHTML = originalText;
+                    btn.innerHTML = '<i class="fab fa-whatsapp"></i> Send via WhatsApp';
                     btn.style.background = '';
+                    btn.style.borderColor = '';
                     btn.disabled = false;
-                    this.reset();
-                }, 2000);
-            }, 1500);
-        });
+                    document.getElementById('contactForm').reset();
+                }, 3000);
+            }, 800);
+        }
 
         // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             });
+        });
+
+        // Close mobile menu on window resize if open
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) {
+                document.getElementById('mobileMenu').classList.remove('active');
+                if (!document.querySelector('.modal-overlay.active')) {
+                    document.body.style.overflow = '';
+                }
+            }
         });
     </script>
 </body>
